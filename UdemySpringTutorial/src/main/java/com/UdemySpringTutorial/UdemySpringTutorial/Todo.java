@@ -1,10 +1,21 @@
 package com.UdemySpringTutorial.UdemySpringTutorial;
 
 import java.util.Date;
+import java.util.Objects;
 
 public class Todo {
     private long id;
-    private String username, description;
+    private String username;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    private String description;
     private Date targetDate;
     private boolean isDone;
 
@@ -46,5 +57,18 @@ public class Todo {
 
     public void setDone(boolean done) {
         isDone = done;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Todo todo = (Todo) o;
+        return id == todo.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }
